@@ -11,6 +11,9 @@ class Collect extends BaseClient
         }
         $fields = ['fields'];
         foreach ($fields as $field) {
+            if (!isset($query[$field])) {
+                continue;
+            }
             $query[$field] = $this->flat($query[$field]);
         }
         return $this->request('get', 'collects', query: $query);

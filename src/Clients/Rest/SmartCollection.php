@@ -11,6 +11,9 @@ class SmartCollection extends BaseClient
         }
         $fields = ['fields', 'ids'];
         foreach ($fields as $field) {
+            if (!isset($query[$field])) {
+                continue;
+            }
             $query[$field] = $this->flat($query[$field]);
         }
         return $this->request('get', 'smart_collections', query: $query);

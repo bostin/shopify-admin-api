@@ -12,9 +12,10 @@ class Product extends BaseClient
 
         $fields = ['fields','handle', 'ids', 'presentment_currencies', 'status'];
         foreach ($fields as $field) {
-            if (isset($query[$field])) {
-                $query[$field] = $this->flat($query[$field]);
+            if (!isset($query[$field])) {
+                continue;
             }
+            $query[$field] = $this->flat($query[$field]);
         }
 
         return $this->request('get', 'products', query: $query);
