@@ -8,7 +8,7 @@ class Graphql extends Client
     {
         $headers = [];
 
-        $headers['X--Shopify-Access-Token'] = $this->config->get('access_token');
+        $headers['X-Shopify-Access-Token'] = $this->config->get('access_token');
         if (is_array($data)) {
             $headers['Content-Type'] = 'application/json';
             $data = json_encode($data);
@@ -20,7 +20,8 @@ class Graphql extends Client
         $options['body'] = $data;
         $options['headers'] = $headers;
 
-        $uri = 'admin/api/'. $this->config->get('version', 'stable') .'/graphql.json';
-        return $this->client->post($uri, $options);
+        $uri = 'admin/api/'. $this->config->get('version', 'unstable') .'/graphql.json';
+        $response = $this->client->post($uri, $options);
+        return json_decode((string) $response->getBody(), true);
     }
 }

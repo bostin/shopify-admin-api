@@ -11,7 +11,9 @@
     }
   ],
   "autoload": {
-    "\\BoShopify": "./src"
+    "psr-4": {
+      "BoShopify\\": "./src"
+    }
   },
   "require": {
     "php": "^8.1",

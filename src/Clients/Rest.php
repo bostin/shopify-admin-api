@@ -31,7 +31,7 @@ class Rest extends Client
     public function __get(string $name)
     {
         $name = ucfirst($name);
-        if (!$this->magics[$name]) {
+        if (!isset($this->magics[$name])) {
             $class = __NAMESPACE__ . '\\Rest\\' . $name;
             if (!class_exists($class)) {
                 throw new RestClientNotFoundException('Not found rest client for: ' . $name);
@@ -44,7 +44,7 @@ class Rest extends Client
     protected function getUri(string $path): string
     {
         $path = trim($path, '/');
-        $version = $this->config->get('api_version', 'stable');
+        $version = $this->config->get('api_version', 'unstable');
         return sprintf('admin/api/%s/%s.json', $version, $path);
     }
 
@@ -66,6 +66,7 @@ class Rest extends Client
         $options['query'] = $query;
         $options['body'] = $data;
         $uri = $this->getUri($path);
-        return $this->client->request($method, $uri, $options);
+        $response = $this->client->request($method, $uri, $options);
+        return json_decode((string) $response->getBody(), true);
     }
 }

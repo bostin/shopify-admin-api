@@ -1,6 +1,6 @@
 <?php
 
-require '../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use BoShopify\Clients\Rest;
 use BoShopify\Clients\Graphql;
@@ -9,14 +9,15 @@ use BoShopify\Config;
 
 $config = new Config([
     'domain' => 'bostin.myshopify.com',
-    'access_token' => 'aaaa',
+    'access_token' => '11111',
 ]);
 
 $rest = new Rest($config);
 $graphql = new Graphql($config);
 
 
-var_dump($rest->product->list(['limit' => 2]));
+// var_dump($rest->product->list(['limit' => 2]));
+
 
 
 $query = <<<'GL'
