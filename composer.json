@@ -1,6 +1,6 @@
 {
   "name": "bostin/shopify-admin-api",
-  "version": "v0.0.1",
+  "version": "v0.0.2",
   "description": "Shopify admin api",
   "minimum-stability": "stable",
   "license": "MIT",
