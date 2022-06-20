@@ -4,11 +4,12 @@ namespace BoShopify\Clients;
 
 use BoShopify\Config;
 use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\ClientInterface;
 
 abstract class Client
 {
     protected readonly Config $config;
-    protected readonly HttpClient $client;
+    protected readonly ClientInterface $client;
 
     public function __construct(Config $config)
     {
@@ -23,12 +24,10 @@ abstract class Client
 
     protected function resolveHttpClient(): void
     {
-        if ($this->config->has('http_client')) {
+        if ($this->config->has('http_client') && $this->config->get('http_client') instanceof ClientInterface) {
             $this->client = $this->config->get('http_client');
         } else {
-            $this->client = new HttpClient([
-                'base_uri' => 'https://' . $this->config->get('domain') . '/',
-            ]);
+            $this->client = new HttpClient(['base_uri' => 'https://' . $this->config->get('domain') . '/']);
         }
     }
 }
