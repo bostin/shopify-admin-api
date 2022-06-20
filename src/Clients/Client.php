@@ -23,8 +23,12 @@ abstract class Client
 
     protected function resolveHttpClient(): void
     {
-        $this->client = new HttpClient([
-            'base_uri' => 'https://' . $this->config->get('domain') . '/',
-        ]);
+        if ($this->config->has('http_client')) {
+            $this->client = $this->config->get('http_client');
+        } else {
+            $this->client = new HttpClient([
+                'base_uri' => 'https://' . $this->config->get('domain') . '/',
+            ]);
+        }
     }
 }
