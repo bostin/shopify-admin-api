@@ -11,6 +11,7 @@ use BoShopify\Clients\Rest\ProductImage;
 use BoShopify\Clients\Rest\ProductVariant;
 use BoShopify\Clients\Rest\Shop;
 use BoShopify\Clients\Rest\SmartCollection;
+use BoShopify\Clients\Rest\Webhook;
 use BoShopify\Exceptions\RestClientNotFoundException;
 
 /**
@@ -23,6 +24,7 @@ use BoShopify\Exceptions\RestClientNotFoundException;
  * @property-read ProductVariant $productVariant
  * @property-read Shop $shop
  * @property-read SmartCollection $smartCollection
+ * @property-read Webhook $webhook
  */
 class Rest extends Client
 {
