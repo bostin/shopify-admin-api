@@ -12,9 +12,11 @@ class Webhook extends BaseClient
     public function create(string $topic, string $address, string $format = 'json')
     {
         $params = [
-            'topic' => $topic,
-            'address' => $address,
-            'format'  => $format,
+            'webhook' => [
+                'topic' => $topic,
+                'address' => $address,
+                'format'  => $format,
+            ],
         ];
         return $this->request('POST', 'webhooks', $params);
     }
