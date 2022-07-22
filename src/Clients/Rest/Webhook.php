@@ -20,4 +20,9 @@ class Webhook extends BaseClient
         ];
         return $this->request('POST', 'webhooks', $params);
     }
+
+    public function delete(int $id)
+    {
+        return $this->request('DELETE', 'webhooks/' . $id);
+    }
 }
